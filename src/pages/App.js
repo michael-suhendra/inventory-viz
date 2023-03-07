@@ -1,19 +1,18 @@
 import React from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from '!mapbox-gl'; 
+import config from '../../config/config.json'
 
-// D:\projects\inventory-viz\src\pages\App.js6:22  error  React Hook "useRef" cannot be called at the top level. ReactHooks must be called in a React function component or a custom React Hook function     react-hooks/rules-of-hooks
-
-// already changed
-mapboxgl.accessToken = 'pk.eyJ1IjoibWljaGFlbC1zdWhlbmRyYSIsImEiOiJjbGJrdjQ1enAwMWc3NDBteHpocDMwd3ZwIn0.XyPPSemW0MtJl37qs_Xnqg';
+// set access token from config
+mapboxgl.accessToken = config.MAPBOX_ACCESS_TOKEN;
 
 export default class App extends React.PureComponent {
 
     constructor(props) {
         super(props);
         this.state = {
-            lng: 11.582,
+            lng: 11.56,
             lat: 48.135,
-            zoom: 10
+            zoom: 10,
         };
         this.mapContainer = React.createRef();
         }
