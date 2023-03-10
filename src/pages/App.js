@@ -1,7 +1,7 @@
 import React from 'react';
 import mapboxgl from '!mapbox-gl'; 
 //import 'mapbox-gl/dist/mapbox-gl.css';
-import * as styles from '../styles/mapbox-gl-2.3.1.css';
+//import * as styles from '../styles/mapbox-gl-2.3.1.css';
 import config from '../../config/config.json'
 
 // set access token from config
@@ -36,7 +36,16 @@ export default class App extends React.Component {
             map.addControl(new mapboxgl.NavigationControl());
             // disable touchscreen?
             map.touchPitch.disable();
+            // test event listener
+            map.on('move', () => {
+                this.setState({
+                lng: map.getCenter().lng.toFixed(4),
+                lat: map.getCenter().lat.toFixed(4),
+                zoom: map.getZoom().toFixed(2)
+                });
+            });
             // load emission inventory maps
+            // (rectangular) border: [11.36077835, 48.06162486, 11.72290934, 48.2481186 ]
             map.on('load', () => {
                 map.addSource('boundary-rect', {
                     type: 'geojson',
@@ -47,11 +56,11 @@ export default class App extends React.Component {
                             type: 'Polygon',
                             coordinates: [
                                 [
-                                    [11.0, 48.50833],
-                                    [12.2166, 48.50833],
-                                    [12.2166, 47.7],
-                                    [11.0, 47.7],
-                                    [11.0, 48.50833],
+                                    [11.361, 48.248],
+                                    [11.723, 48.248],
+                                    [11.723, 48.062],
+                                    [11.361, 48.062],
+                                    [11.361, 48.248],
                                 ],
                             ],
                         },
@@ -64,23 +73,27 @@ export default class App extends React.Component {
                     layout: {},
                     paint: {
                         'line-color': '#1E3A8A',
-                        'line-width': 3,
+                        'line-width': 4,
                         'line-opacity': 0.7,
                     },
                 });
-                console.log("map is loaded") //not called
+                // set map
                 this.setState({currentMap: map});
                 // clean up on unmount
                 return () => this.map.remove();
-            }, []);
+            });
         }
 
         render() {
+            const { lng, lat, zoom } = this.state;
             return (
             <div>
                 <h1 className="text-3xl font-bold underline">
                     TUM GNFR C Munich Emission Inventory
                 </h1>
+                <div className="sidebar">
+                Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+                </div>
                 <div ref={this.mapContainer} className="map-container" />
             </div>
             );
