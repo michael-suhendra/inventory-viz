@@ -1,6 +1,7 @@
 # TUM GNFR C Emission Inventory Visualization
 
-**Current URL:** https://delicate-brigadeiros-504fc7.netlify.app/App/
+**Current URL:** https://tum-gnfr-c-inventory.netlify.app/App/
+
 ## 🌏 Roadmap
 
 - [x] First working version of map
