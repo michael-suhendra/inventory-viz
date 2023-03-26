@@ -15,6 +15,10 @@
 - styling: TailwindCSS
 - deployment: Gatsby, Netlify
 
+## 🍣 Run the project
+
+- Start dev server: `npm run start`
+
 ## 🏭 Background Information
 
 Based on the thesis "A High-resolution Emission Inventory for the Heating Sector in Munich".

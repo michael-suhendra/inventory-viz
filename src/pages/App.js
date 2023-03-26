@@ -2,7 +2,7 @@ import React from 'react';
 import mapboxgl from '!mapbox-gl'; 
 
 // set access token from environment variable
-mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
+mapboxgl.accessToken = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
 
 export default class App extends React.Component {
 
