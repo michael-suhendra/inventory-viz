@@ -1,11 +1,8 @@
 import React from 'react';
 import mapboxgl from '!mapbox-gl'; 
-//import 'mapbox-gl/dist/mapbox-gl.css';
-//import * as styles from '../styles/mapbox-gl-2.3.1.css';
-import config from '../../config/config.json'
 
-// set access token from config
-mapboxgl.accessToken = config.MAPBOX_ACCESS_TOKEN;
+// set access token from environment variable
+mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
 export default class App extends React.Component {
 
@@ -146,7 +143,7 @@ export default class App extends React.Component {
                 Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
                 </div>
                 <div ref={this.mapContainer} className="map-container" />
-                <div class='map-overlay' id='legend'></div>
+                <div className='map-overlay' id='legend'></div>
             </div>
             );
         }
